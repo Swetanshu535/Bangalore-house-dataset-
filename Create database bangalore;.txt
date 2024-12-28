@@ -1,0 +1,36 @@
+Create database bangalore;
+use bangalore;
+
+select * from bangalore_house;
+
+/*Show the total average for the price and along with that show the round result
+Show the area type that starts with S
+for not ready to move show the total square feet 
+show the area type and the total location 
+rank the area type and order the data by the society 
+Seperate the data using the window function and order the data by society*/
+
+-- Show the total average for the price and along with that show the round result
+select round(avg(price))
+from bangalore_house;
+
+-- Show the area type that starts with S
+select area_type
+from bangalore_house
+where area_type like "S%";
+
+-- for not ready to move show the total square feet 
+select availability,total_sqft
+from bangalore_house
+where availability= "Not ready to move";
+
+-- show the area type and the total location
+select area_type,location
+from bangalore_house;
+
+-- rank the area type and order the data by the society
+select area_type,rank() over (Order by society) from bangalore_house;
+
+-- Seperate the data using the window function and order the data by society
+select ntile(5) over (order by society)
+from bangalore_house;
